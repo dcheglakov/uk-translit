@@ -1,5 +1,11 @@
 # uk-translit
 
+## 1.0.1
+
+### Patch Changes
+
+- 4c7e829: Fix package publishing metadata and release workflow configuration.
+
 ## 1.0.0
 
 ### Major Changes
