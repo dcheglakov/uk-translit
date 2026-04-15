@@ -1,6 +1,6 @@
 {
   "name": "@dcheglakov/uk-translit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Official Ukrainian transliteration and slug generation for TypeScript, built according to the current rules of the Cabinet of Ministers of Ukraine Resolution No. 55. Designed for headless CMS workflows, with context-aware transliteration, clean slug output, strong test coverage, and a modern release pipeline.",
   "homepage": "https://github.com/dcheglakov/uk-translit#readme",
   "bugs": {
