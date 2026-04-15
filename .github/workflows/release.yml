@@ -44,7 +44,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: bun run version-packages
-          publish: bun run build && bun pm pack && npm publish ./*.tgz --access public
+          publish: bun run publish:ci
           commit: 'chore: release packages'
           title: 'chore: release packages'
         env:

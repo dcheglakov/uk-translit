@@ -33,6 +33,7 @@
 		"format": "oxfmt",
 		"lint": "oxlint",
 		"prepare": "bun simple-git-hooks",
+		"publish:ci": "bun run build && bun pm pack && npm publish ./*.tgz --access public",
 		"release": "changeset publish",
 		"test": "bun test",
 		"test:coverage": "bun test --coverage",
