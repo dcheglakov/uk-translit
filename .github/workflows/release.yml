@@ -2,12 +2,12 @@ name: Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 
 permissions:
   contents: write
-  id-token: write
+  pull-requests: write
 
 jobs:
   release:
@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -42,17 +40,13 @@ jobs:
       - name: Run tests
         run: bun run test
 
-      - name: Build
-        run: bun run build
-
-      - name: Generate changelog
-        run: bunx changelogithub
-        continue-on-error: true
+      - name: Create release PR or publish
+        uses: changesets/action@v1
+        with:
+          version: bun run version-packages
+          publish: bun run build && bun pm pack && npm publish ./*.tgz --access public
+          commit: 'chore: release packages'
+          title: 'chore: release packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Update npm
-        run: npm install -g npm@latest
-
-      - name: Publish packages to npm
-        run: bun pm pack && npm publish ./*.tgz --access public
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
